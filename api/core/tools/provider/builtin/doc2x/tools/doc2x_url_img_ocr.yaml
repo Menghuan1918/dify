@@ -1,24 +1,24 @@
 identity:
-  name: doc2x_img_ocr
+  name: doc2x_url_img_ocr
   author: Menghuan1918
   label:
-    en_US: Doc2X Image OCR
-    zh_Hans: Doc2X图形识别
+    en_US: Doc2X Image OCR(URL)
+    zh_Hans: Doc2X图形识别(URL)
 description:
   human:
-    en_US: Recognize text from images using Doc2X, output in markdown format with LaTeX formulas.
-    zh_Hans: 使用 Doc2X 从图像中识别文本，以带LaTeX公式的Markdown格式输出。
-  llm: A tool for recognizing text from images using Doc2X, output in LaTeX format. You should input the image id as the input of this tool, the image id can be got from parameters.
+    en_US: Recognize text from images(URL) using Doc2X, output in markdown format with LaTeX formulas.
+    zh_Hans: 使用 Doc2X 从图像(URL)中识别文本，以带LaTeX公式的markdown格式输出。
+  llm: A tool for recognizing text from images using Doc2X, output in LaTeX format. You should input the image's URL.
 parameters:
-  - name: image_file
-    type: file
+  - name: image_url
+    type: string
     label:
-      en_US: Image File
-      zh_Hans: 图像文件
+      en_US: Image URL
+      zh_Hans: 图像链接
     human_description:
-      en_US: The image file to be recognized. Returns an empty string when the image file is not found in the file type variable or the variable is empty.
-      zh_Hans: 要识别的图像文件，当找从文件类型变量中不到图像文件或者变量为空时，返回一个空字符串。
-    llm_description: The image file to be recognized.
+      en_US: The image URL to be recognized.
+      zh_Hans: 要识别的图像链接
+    llm_description: The image URL to be recognized.
     form: llm
   - name: correction
     type: boolean
