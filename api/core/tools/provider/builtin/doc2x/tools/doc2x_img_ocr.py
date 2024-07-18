@@ -61,7 +61,7 @@ class Doc2xImgOCRTool(BuiltinTool):
         for image_name in input_list:
             try:
                 if image_name['type'] != 'image':
-                    raise Exception('The input is not an image')
+                    continue
                 # Get the image binary from local URL
                 image_response = get(image_name['url'])
                 image_response.raise_for_status()
@@ -69,7 +69,7 @@ class Doc2xImgOCRTool(BuiltinTool):
                 if content_type.startswith('image/'):
                     image_binary = io.BytesIO(image_response.content)
                 else:
-                    raise Exception('The input is not an image')
+                    continue
                 files = {'file': ('image', image_binary, content_type)}
                 # As the RPM of Doc2X is low, we need to try more times when reaching the limit
                 uuid = None
@@ -81,6 +81,7 @@ class Doc2xImgOCRTool(BuiltinTool):
                         data={'img_correction': img_correction, 'equation': formula},
                         timeout=30,
                     )
+                    # The rate limit status code is 429
                     if response.status_code == 429:
                         time.sleep(10)
                         continue
@@ -101,6 +102,7 @@ class Doc2xImgOCRTool(BuiltinTool):
                     url = f'https://api.doc2x.noedgeai.com/api/platform/async/status?uuid={uuid}'
                 while True:
                     response = get(url, headers={'Authorization': f'Bearer {real_api_key}'}, timeout=30)
+                    # satus code is 200 means the request is successful
                     if response.status_code != 200:
                         raise Exception(response.text)
                     status = json.loads(response.content.decode('utf-8'))['data']['status']

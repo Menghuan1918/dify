@@ -16,8 +16,8 @@ parameters:
       en_US: Image File
       zh_Hans: 图像文件
     human_description:
-      en_US: The image file to be recognized.
-      zh_Hans: 要识别的图像文件。
+      en_US: The image file to be recognized. Returns an empty string when the image file is not found in the file type variable or the variable is empty.
+      zh_Hans: 要识别的图像文件，当找从文件类型变量中不到图像文件或者变量为空时，返回一个空字符串。
     llm_description: The image file to be recognized.
     form: llm
   - name: correction
