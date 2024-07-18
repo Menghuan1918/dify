@@ -1,0 +1,42 @@
+identity:
+  name: doc2x_url_pdf_ocr
+  author: Menghuan1918
+  label:
+    en_US: Doc2X PDF OCR(URL)
+    zh_Hans: Doc2X PDF识别(URL)
+description:
+  human:
+    en_US: Recognize text from PDF(URL) using Doc2X, output in markdown format with LaTeX formulas.
+    zh_Hans: 使用 Doc2X 从PDF(URL)中识别文本，以带LaTeX公式的markdown格式输出。
+  llm: A tool for recognizing text from PDF using Doc2X, output in LaTeX format. You should input the PDF's URL.
+parameters:
+  - name: pdf_url
+    type: string
+    label:
+      en_US: PDF file's URL
+      zh_Hans: PDF文件链接
+    human_description:
+      en_US: The PDF file URL to be recognized.
+      zh_Hans: 要识别的PDF文件链接
+    llm_description: The PDF file's URL to be recognized.
+    form: llm
+  - name: ocr
+    type: boolean
+    default: true
+    label:
+      en_US: Do OCR for PDF
+      zh_Hans: 是否对PDF进行OCR
+    human_description:
+      en_US: Do OCR for the images in the PDF.
+      zh_Hans: 对PDF中的图片进行OCR。
+    form: form
+  - name: get_limit
+    type: boolean
+    default: false
+    label:
+      en_US: Get Limit Only
+      zh_Hans: 不解析PDF，获取剩余次数
+    human_description:
+      en_US: Get the remaining OCR times without parsing the PDF.
+      zh_Hans: 不解析PDF，获取剩余识别次数。
+    form: form
